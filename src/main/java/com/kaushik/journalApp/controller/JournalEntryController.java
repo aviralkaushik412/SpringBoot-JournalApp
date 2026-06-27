@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-@RestController
+//@RestController
 @RequestMapping("/_journal")
 public class JournalEntryController {
-    private Map<Long , JournalEntry> journalentries = new HashMap<>();
+    private Map<Object , JournalEntry> journalentries = new HashMap<>();
 
     @GetMapping()
     public List<JournalEntry> getAll(){
@@ -23,15 +23,15 @@ public class JournalEntryController {
         return true;
     }
     @GetMapping("/id/{myid}")
-    public JournalEntry getbyID(@PathVariable Long myid ){
+    public JournalEntry getbyID(@PathVariable String myid ){
         return journalentries.get(myid);
     }
     @DeleteMapping("id/{myid}")
-    public JournalEntry deletebyID(@PathVariable Long myid){
+    public JournalEntry deletebyID(@PathVariable String myid){
         return journalentries.remove(myid);
     }
     @PutMapping("id/{myid}")
-    public JournalEntry updateByID(@PathVariable Long myid,@RequestBody JournalEntry myentry){
+    public JournalEntry updateByID(@PathVariable String myid,@RequestBody JournalEntry myentry){
         return journalentries.put(myid,myentry);
     }
 }
